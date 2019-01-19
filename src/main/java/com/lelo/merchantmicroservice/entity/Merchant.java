@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = Merchant.TABLE_NAME)
 public class Merchant {
-    public static final String TABLE_NAME = "EMPLOYEE";
+    public static final String TABLE_NAME = "MERCHANT";
     private static final String ID_COLUMN = "ID";
 
     @Id
@@ -17,13 +17,13 @@ public class Merchant {
     private String merchantId;
     private String name;
     private double rating;
-    private int ratingCounter;
+    private double ratingCounter;
     private String emailId;
 
     public Merchant() {
     }
 
-    public Merchant(String merchantId, String name, double rating, int ratingCounter, String emailId) {
+    public Merchant(String merchantId, String name, double rating, double ratingCounter, String emailId) {
         this.merchantId = merchantId;
         this.name = name;
         this.rating = rating;
@@ -63,11 +63,11 @@ public class Merchant {
         this.emailId = emailId;
     }
 
-    public int getRatingCounter() {
+    public double getRatingCounter() {
         return ratingCounter;
     }
 
-    public void setRatingCounter(int ratingCounter) {
+    public void setRatingCounter(double ratingCounter) {
         this.ratingCounter = ratingCounter;
     }
 }

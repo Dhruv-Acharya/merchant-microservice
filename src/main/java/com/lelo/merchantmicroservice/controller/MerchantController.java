@@ -1,5 +1,6 @@
 package com.lelo.merchantmicroservice.controller;
 
+import com.lelo.merchantmicroservice.dto.MerchantDTO;
 import com.lelo.merchantmicroservice.entity.Merchant;
 import com.lelo.merchantmicroservice.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class MerchantController {
     @Autowired
     MerchantService merchantService;
 
-    @RequestMapping(value = "/rating/add{merchantId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/rating/add/{merchantId}", method = RequestMethod.POST)
     public ResponseEntity<Boolean> addRating(@PathVariable String merchantId, double rating) {
         merchantService.addRating(merchantId, rating);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
@@ -26,5 +27,10 @@ public class MerchantController {
     @RequestMapping(value = "/rating/get/{merchantId}", method = RequestMethod.GET)
     public ResponseEntity<Merchant> findOne(@PathVariable String merchantId) {
         return new ResponseEntity<Merchant>(merchantService.findOne(merchantId),HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseEntity<String> save(MerchantDTO merchant) {
+        return new ResponseEntity<String>(merchantService.save(merchant).getMerchantId(),HttpStatus.CREATED);
     }
 }
