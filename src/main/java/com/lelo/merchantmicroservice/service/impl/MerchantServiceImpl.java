@@ -16,16 +16,17 @@ public class MerchantServiceImpl implements MerchantService {
     @Autowired
     MerchantRepository merchantRepository;
 
-    @Override
-    @Transactional(readOnly = false)
-    public void addRating(String merchantId, double rating) {
-        Merchant merchant = this.findOne(merchantId);
-        double newRating = merchant.getRating() + rating;
-        double newRatingCount = merchant.getRatingCounter() + 1;
-        merchant.setRatingCounter(newRatingCount);
-        System.out.println(newRating + " " + newRatingCount + " " + newRating / newRatingCount);
-        merchant.setRating(newRating / newRatingCount);
-    }
+//    @Override
+//    @Transactional(readOnly = false)
+//    public void addRating(String merchantId, MerchantDTO merchantDTO) {
+//        Merchant merchant = this.findOne(merchantId);
+//        double rating = merchantDTO
+//        double newRating = merchant.getRating() + rating;
+//        double newRatingCount = merchant.getRatingCounter() + 1;
+//        merchant.setRatingCounter(newRatingCount);
+//        System.out.println(newRating + " " + newRatingCount + " " + newRating / newRatingCount);
+//        merchant.setRating(newRating / newRatingCount);
+//    }
 
     @Override
     public Merchant findOne(String merchantId) {
