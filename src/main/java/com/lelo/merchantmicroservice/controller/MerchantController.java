@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/merchant")
 public class MerchantController {
@@ -29,5 +31,10 @@ public class MerchantController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<String> save(@RequestBody MerchantDTO merchant) {
         return new ResponseEntity<String>(merchantService.save(merchant).getMerchantId(),HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/getMerchantsByIds", method = RequestMethod.POST)
+    public ResponseEntity<List<Merchant>> getMerchants(@RequestBody List<String> merchants) {
+        return new ResponseEntity<List<Merchant>>(merchantService.getMerchants(merchants), HttpStatus.OK);
     }
 }
