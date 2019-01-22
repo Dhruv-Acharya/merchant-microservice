@@ -57,4 +57,16 @@ public class MerchantServiceImpl implements MerchantService {
         }
         return merchants;
     }
+
+    @Override
+    public List<Merchant> getAll() {
+        List<Merchant> merchantList = new ArrayList<>();
+        Iterable<Merchant> merchants = merchantRepository.findAll();
+        Iterator merchantIterator = merchants.iterator();
+        while (merchantIterator.hasNext()) {
+            Merchant merchant = (Merchant) merchantIterator.next();
+            merchantList.add(merchant);
+        }
+        return merchantList;
+    }
 }

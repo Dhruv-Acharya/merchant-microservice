@@ -37,4 +37,9 @@ public class MerchantController {
     public ResponseEntity<List<Merchant>> getMerchants(@RequestBody List<String> merchants) {
         return new ResponseEntity<List<Merchant>>(merchantService.getMerchants(merchants), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public ResponseEntity<List<Merchant>> getAll() {
+        return new ResponseEntity<List<Merchant>>(merchantService.getAll(), HttpStatus.OK);
+    }
 }

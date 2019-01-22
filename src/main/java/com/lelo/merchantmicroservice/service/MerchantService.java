@@ -11,4 +11,5 @@ public interface MerchantService {
     public Merchant findOne(String merchantId);
     public Merchant save(MerchantDTO merchantDto);
     public List<Merchant> getMerchants(List<String> merchants);
+    public List<Merchant> getAll();
 }
