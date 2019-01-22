@@ -10,6 +10,6 @@ public interface MerchantService {
 //    public void addRating(String merchanrId, MerchantDTO rating);
     public Merchant findOne(String merchantId);
     public Merchant save(MerchantDTO merchantDto);
-    public List<Merchant> getMerchants(List<String> merchants);
+    public List<MerchantDTO> getMerchants(List<String> merchants);
     public List<Merchant> getAll();
 }

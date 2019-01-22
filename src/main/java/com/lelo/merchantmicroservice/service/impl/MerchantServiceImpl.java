@@ -48,12 +48,17 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
-    public List<Merchant> getMerchants(List<String> merchantList) {
-        List<Merchant> merchants = new ArrayList<>();
+    public List<MerchantDTO> getMerchants(List<String> merchantList) {
+        List<MerchantDTO> merchants = new ArrayList<>();
         Iterator merchantIterator = merchantList.iterator();
         while (merchantIterator.hasNext()) {
             Merchant merchant = merchantRepository.findOne((String) merchantIterator.next());
-            merchants.add(merchant);
+            MerchantDTO merchantDTO = new MerchantDTO();
+            merchantDTO.setEmailId(merchantDTO.getEmailId());
+            merchantDTO.setMerchantId(merchant.getMerchantId());
+            merchantDTO.setRating(merchant.getRating());
+            merchantDTO.setName(merchant.getName());
+            merchants.add(merchantDTO);
         }
         return merchants;
     }
