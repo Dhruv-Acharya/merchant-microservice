@@ -17,29 +17,23 @@ public class MerchantController {
     @Autowired
     MerchantService merchantService;
 
-//    @RequestMapping(value = "/rating/add/{merchantId}", method = RequestMethod.POST)
-//    public ResponseEntity<Boolean> addRating(@PathVariable String merchantId, @RequestBody MerchantDTO rating) {
-//        merchantService.addRating(merchantId, rating);
-//        return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
-//    }
-
     @RequestMapping(value = "/rating/get/{merchantId}", method = RequestMethod.GET)
     public ResponseEntity<Merchant> findOne(@PathVariable String merchantId) {
-        return new ResponseEntity<Merchant>(merchantService.findOne(merchantId),HttpStatus.OK);
+        return new ResponseEntity<>(merchantService.findOne(merchantId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<String> save(@RequestBody MerchantDTO merchant) {
-        return new ResponseEntity<String>(merchantService.save(merchant).getMerchantId(),HttpStatus.CREATED);
+    public ResponseEntity<Merchant> save(@RequestBody MerchantDTO merchant) {
+        return new ResponseEntity<>(merchantService.save(merchant), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/getMerchantsByIds", method = RequestMethod.POST)
     public ResponseEntity<List<MerchantDTO>> getMerchants(@RequestBody List<String> merchants) {
-        return new ResponseEntity<List<MerchantDTO>>(merchantService.getMerchants(merchants), HttpStatus.OK);
+        return new ResponseEntity<>(merchantService.getMerchants(merchants), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<List<Merchant>> getAll() {
-        return new ResponseEntity<List<Merchant>>(merchantService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(merchantService.getAll(), HttpStatus.OK);
     }
 }

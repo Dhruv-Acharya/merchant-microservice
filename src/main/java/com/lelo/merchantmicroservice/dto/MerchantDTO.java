@@ -1,5 +1,10 @@
 package com.lelo.merchantmicroservice.dto;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class MerchantDTO {
     private String merchantId;
     private String name;
@@ -9,12 +14,6 @@ public class MerchantDTO {
     public MerchantDTO() {
     }
 
-    public MerchantDTO(String merchantId, String name, String emailId, double rating) {
-        this.merchantId = merchantId;
-        this.name = name;
-        this.emailId = emailId;
-        this.rating = rating;
-    }
 
     public String getMerchantId() {
         return merchantId;
