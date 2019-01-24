@@ -2,7 +2,6 @@ package com.lelo.merchantmicroservice.controller;
 
 import com.lelo.merchantmicroservice.dto.MerchantDTO;
 import com.lelo.merchantmicroservice.entity.Merchant;
-import com.lelo.merchantmicroservice.exception.MerchantAlreadyExists;
 import com.lelo.merchantmicroservice.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,27 +23,17 @@ public class MerchantController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<String> save(@RequestBody MerchantDTO merchant) {
-        Merchant merchantDTO = merchantService.findOne(merchant.getMerchantId());
-        if(merchantDTO==null){
-            return new ResponseEntity<>(merchantService.save(merchant).getMerchantId(), HttpStatus.CREATED);
-        }
-        else if(merchantDTO.getName()==null){
-            throw new MerchantAlreadyExists();
-        }
-        else{
-            throw new MerchantAlreadyExists();
-        }
-
+    public ResponseEntity<Merchant> save(@RequestBody MerchantDTO merchant) {
+        return new ResponseEntity<>(merchantService.save(merchant), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/getMerchantsByIds", method = RequestMethod.POST)
     public ResponseEntity<List<MerchantDTO>> getMerchants(@RequestBody List<String> merchants) {
-        return new ResponseEntity<List<MerchantDTO>>(merchantService.getMerchants(merchants), HttpStatus.OK);
+        return new ResponseEntity<>(merchantService.getMerchants(merchants), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<List<Merchant>> getAll() {
-        return new ResponseEntity<List<Merchant>>(merchantService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(merchantService.getAll(), HttpStatus.OK);
     }
 }

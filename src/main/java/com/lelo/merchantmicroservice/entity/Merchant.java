@@ -1,6 +1,7 @@
 package com.lelo.merchantmicroservice.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,12 +18,13 @@ public class Merchant {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = Merchant.ID_COLUMN)
     private String merchantId;
+    @NotNull
+    @Pattern(regexp = "^[A-Za-z]*$", message = "Name must be alphabetical")
     private String name;
     private double rating;
     private double ratingCounter;
-
     @NotNull
-    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message = "Invalid Email Pattern")
+    @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Invalid Email ID")
     private String emailId;
     public Merchant() {
     }
