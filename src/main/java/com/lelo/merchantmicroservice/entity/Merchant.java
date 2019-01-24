@@ -3,6 +3,8 @@ package com.lelo.merchantmicroservice.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = Merchant.TABLE_NAME)
@@ -18,17 +20,11 @@ public class Merchant {
     private String name;
     private double rating;
     private double ratingCounter;
+
+    @NotNull
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message = "Invalid Email Pattern")
     private String emailId;
-
     public Merchant() {
-    }
-
-    public Merchant(String merchantId, String name, double rating, double ratingCounter, String emailId) {
-        this.merchantId = merchantId;
-        this.name = name;
-        this.rating = rating;
-        this.ratingCounter = ratingCounter;
-        this.emailId = emailId;
     }
 
     public String getMerchantId() {
